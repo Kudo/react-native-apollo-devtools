@@ -1,15 +1,17 @@
-import { addPlugin } from 'react-native-flipper';
-import { initializeFlipperUtils } from './initializeFlipperUtils';
+import type { DevToolsPluginClient } from 'expo/devtools';
+import type { addPlugin } from 'react-native-flipper';
+
+import { initializeExpoUtils, initializeFlipperUtils } from './initializeUtils';
 import type { ApolloClientType, Callback } from './typings';
 
-export const apolloDevToolsInit = (
+export function createFlipperPlugin(
   client: ApolloClientType,
   config?: {
     onConnect?: Callback;
     onDisconnect?: Callback;
   }
-): void =>
-  addPlugin({
+): Parameters<typeof addPlugin>[0] {
+  return {
     getId() {
       return 'react-native-apollo-devtools';
     },
@@ -20,4 +22,12 @@ export const apolloDevToolsInit = (
     onDisconnect() {
       if (config?.onDisconnect) config?.onDisconnect();
     },
-  });
+  };
+}
+
+export function bindExpoPlugin(
+  devToolsClient: DevToolsPluginClient,
+  client: ApolloClientType
+) {
+  initializeExpoUtils(devToolsClient, client);
+}

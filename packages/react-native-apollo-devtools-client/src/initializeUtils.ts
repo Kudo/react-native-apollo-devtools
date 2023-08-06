@@ -1,7 +1,8 @@
 import type { DocumentNode } from '@apollo/client';
 import { getOperationName } from '@apollo/client/utilities';
+import type { DevToolsPluginClient } from 'expo/devtools';
 import type { Flipper } from 'react-native-flipper';
-import { getQueries } from './flipperUtils';
+
 import type {
   ApolloClientState,
   ApolloClientType,
@@ -9,6 +10,7 @@ import type {
   ArrayOfQuery,
   MutationData,
 } from './typings';
+import { getQueries } from './utils';
 
 let tick = 0;
 
@@ -132,4 +134,45 @@ export const initializeFlipperUtils = async (
   apolloClient.__actionHookForDevTools(debounce(() => logger()));
 
   flipperConnection.send('GQL:response', apolloData);
+};
+
+export const initializeExpoUtils = async (
+  devToolsClient: DevToolsPluginClient,
+  apolloClient: ApolloClientType
+): Promise<void> => {
+  let acknowledged = true;
+  let apolloData: null | ApolloClientState = await getCurrentState(
+    apolloClient
+  );
+
+  function sendData(): void {
+    if (apolloData) {
+      devToolsClient.sendMessage('GQL:response', apolloData);
+      acknowledged = false;
+      apolloData = null;
+    }
+  }
+
+  const logger = async (): Promise<void> => {
+    if (acknowledged) {
+      apolloData = await getCurrentState(apolloClient);
+      sendData();
+    }
+  };
+
+  devToolsClient.addMessageListener('GQL:ack', () => {
+    acknowledged = true;
+    sendData();
+  });
+
+  devToolsClient.addMessageListener('GQL:request', async () => {
+    devToolsClient.sendMessage(
+      'GQL:response',
+      await getCurrentState(apolloClient)
+    );
+  });
+
+  apolloClient.__actionHookForDevTools(debounce(() => logger()));
+
+  devToolsClient.sendMessage('GQL:response', apolloData);
 };

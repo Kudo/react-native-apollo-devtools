@@ -1,0 +1,7 @@
+{
+  "name": "expo-plugin-react-native-apollo-devtools",
+  "platforms": ["devtools"],
+  "devtools": {
+    "webpageRoot": "web-build"
+  }
+}

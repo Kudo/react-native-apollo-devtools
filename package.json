@@ -9,7 +9,8 @@
     "packages/*"
   ],
   "scripts": {
-    "start": "lerna run --parallel start"
+    "start": "lerna run --parallel start",
+    "postinstall": "npx patch-package"
   },
   "devDependencies": {
     "lerna": "^4.0.0",
