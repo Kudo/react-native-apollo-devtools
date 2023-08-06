@@ -1,18 +1,11 @@
-import { CopyOutlined } from "@ant-design/icons";
-import { Button, Typography, Tooltip } from "antd";
+import { Typography } from "antd";
 import React, { Fragment } from "react";
 import ReactJson from "react-json-view";
 import { ScrollView } from "react-native";
 
 import { BlockType } from "./typings";
 
-export function Details({
-  selectedItem,
-  onCopy,
-}: {
-  selectedItem: BlockType;
-  onCopy: (...args: any) => void;
-}) {
+export function Details({ selectedItem }: { selectedItem: BlockType }) {
   return (
     <ScrollView>
       <Typography.Title level={4} type="secondary">
@@ -40,18 +33,6 @@ export function Details({
             <Fragment key={key}>
               <Typography.Title level={4} type="secondary">
                 {block?.blockLabel}
-                <Tooltip title="copy">
-                  <Button
-                    onClick={() =>
-                      onCopy(`${JSON.stringify(block?.blockValue)}`)
-                    }
-                    style={{ marginLeft: 10 }}
-                    size="small"
-                    type="default"
-                    shape="default"
-                    icon={<CopyOutlined />}
-                  />
-                </Tooltip>
               </Typography.Title>
               <ReactJson src={block?.blockValue} />
               <br />

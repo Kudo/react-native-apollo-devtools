@@ -81,10 +81,6 @@ export default function App() {
     setSelectedItem({});
   }
 
-  function handleCopyText(text: string) {
-    // TODO
-  }
-
   function handleRefresh() {
     devToolsClient.sendMessage("GQL:request", {});
   }
@@ -115,7 +111,7 @@ export default function App() {
             </View>
           </Layout.Sider>
           <Layout.Content style={styles.content}>
-            <Details selectedItem={selectedItem} onCopy={handleCopyText} />
+            <Details selectedItem={selectedItem} />
           </Layout.Content>
         </Layout>
       </Layout>
