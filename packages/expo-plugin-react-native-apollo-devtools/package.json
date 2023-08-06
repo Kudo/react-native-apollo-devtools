@@ -1,6 +1,6 @@
 {
-  "name": "expo-plugin-react-native-apollo-devtools",
-  "version": "1.0.0",
+  "name": "@kudo-chien/expo-plugin-react-native-apollo-devtools",
+  "version": "0.0.2",
   "main": "index.js",
   "homepage": "/_expo/plugins/expo-plugin-react-native-apollo-devtools",
   "scripts": {
@@ -9,6 +9,17 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  "files": [
+    "app.json",
+    "App.tsx",
+    "babel.config.js",
+    "expo-module.config.json",
+    "index.js",
+    "metro.config.js",
+    "assets/**/*",
+    "src/**/*",
+    "web-build/**/*"
+  ],
   "dependencies": {
     "react-native-apollo-devtools-client": "^1.0.4"
   },
@@ -23,6 +34,5 @@
     "react-json-view": "^1.21.3",
     "react-native": "0.72.3",
     "react-native-web": "~0.19.6"
-  },
-  "private": true
+  }
 }

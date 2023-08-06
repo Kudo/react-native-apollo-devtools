@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/static/js/main.d25135da.js",
+    "static/js/656.a32c511e.js": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/static/js/656.a32c511e.js",
+    "favicon.ico": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/favicon.ico",
+    "index.html": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/index.html",
+    "favicon-32.png": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/favicon-32.png",
+    "favicon-16.png": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/favicon-16.png",
+    "manifest.json": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/manifest.json",
+    "serve.json": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/serve.json",
+    "main.d25135da.js.map": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/static/js/main.d25135da.js.map",
+    "656.a32c511e.js.map": "/_expo/plugins/expo-plugin-react-native-apollo-devtools/static/js/656.a32c511e.js.map"
+  },
+  "entrypoints": [
+    "static/js/656.a32c511e.js",
+    "static/js/main.d25135da.js"
+  ]
+}
